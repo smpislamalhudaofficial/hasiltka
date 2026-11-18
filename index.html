@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123d78">
+  <meta name="description" content="Portal pengumuman hasil Tes Kemampuan Akademik SMP Islam Al Huda Brondong.">
+  <title>Ruang TKA SEMPIA | Hasil Ujian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#123d78;--blue:#1c5eae;--blue2:#3985dc;--sky:#eaf3ff;
+      --ink:#172b45;--muted:#6d7f98;--line:#e0e9f5;--paper:#fff;
+      --page:#f5f8fd;--green:#15845f;--shadow:0 18px 55px rgba(24,69,126,.09);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.55}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .shell{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+    .top{
+      position:relative;overflow:hidden;padding:22px 0 94px;
+      background:linear-gradient(118deg,#102f5e 0%,#164b8d 48%,#2877c8 100%);color:#fff;
+    }
+    .top:before,.top:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}
+    .top:before{width:560px;height:560px;right:-170px;top:-360px}
+    .top:after{width:390px;height:390px;right:-80px;top:-280px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.16)}
+    .brand-mark svg{width:25px;height:25px}
+    .brand-name{font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:800;letter-spacing:.09em;line-height:1.35}
+    .brand-sub{display:block;font-size:10px;font-weight:500;letter-spacing:.04em;color:#c8ddf7;margin-top:3px}
+    .year{font-size:11px;font-weight:800;letter-spacing:.06em;color:#e2efff;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);padding:8px 13px;border-radius:999px;white-space:nowrap}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:34px;padding-top:50px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#c8e0ff;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:22px;height:2px;background:#8ec5ff;border-radius:3px}
+    h1{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.055em;margin:13px 0 15px;font-weight:800}
+    .hero-copy{max-width:570px;color:#d9e9fb;font-size:15px;margin:0}
+    .hero-note{display:flex;align-items:center;gap:9px;margin-top:23px;color:#d8e9fb;font-size:12px}
+    .hero-note span:first-child{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#ffffff1e}
+    .art-stage{min-height:255px;display:grid;place-items:center;position:relative}
+    .art-glow{position:absolute;width:270px;height:270px;border-radius:50%;background:rgba(173,213,255,.18);filter:blur(26px)}
+    .hero-art{position:relative;width:min(100%,370px);height:auto;filter:drop-shadow(0 22px 24px rgba(4,24,53,.2));animation:float 5s ease-in-out infinite}
+    .hero-art[hidden]{display:none}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    main{position:relative;margin-top:-48px;padding-bottom:42px;z-index:3}
+    .stepbar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow)}
+    .step{display:flex;align-items:center;gap:10px;color:#8a9ab0;font-size:11px;font-weight:700}
+    .step-num{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;background:#f0f4fa;color:#7e91aa;font-weight:800;flex:0 0 auto}
+    .step.active{color:var(--navy)}.step.active .step-num{background:linear-gradient(135deg,var(--navy),var(--blue2));color:#fff;box-shadow:0 5px 12px #1c5eae35}
+    .section-intro{margin:30px 0 14px}
+    .kicker{color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px}
+    h2{font-family:"Plus Jakarta Sans",sans-serif;color:var(--navy);font-size:clamp(22px,3vw,30px);letter-spacing:-.04em;line-height:1.2;margin:0}
+    .section-copy{font-size:13px;color:var(--muted);margin:7px 0 0}
+    .exam-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .exam-card{
+      position:relative;overflow:hidden;display:flex;align-items:center;gap:17px;text-align:left;
+      border:1px solid var(--line);border-radius:22px;padding:19px;background:#fff;color:var(--ink);
+      box-shadow:0 8px 26px rgba(28,73,128,.045);transition:transform .2s,border-color .2s,box-shadow .2s;
+      min-height:132px;
+    }
+    .exam-card:hover{transform:translateY(-3px);border-color:#a9c8ed;box-shadow:0 15px 32px rgba(28,73,128,.1)}
+    .exam-card.active{border-color:#4e8ed5;box-shadow:0 0 0 3px rgba(57,133,220,.12),0 14px 30px rgba(28,73,128,.08);background:linear-gradient(110deg,#fff 50%,#f1f7ff)}
+    .exam-card:focus-visible,.sort-button:focus-visible,.refresh:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #7db7f7;outline-offset:3px}
+    .exam-icon{width:76px;height:76px;border-radius:20px;background:linear-gradient(145deg,#eaf3ff,#d9eaff);display:grid;place-items:center;flex:0 0 auto}
+    .exam-icon svg{width:57px;height:57px}
+    .exam-copy{min-width:0;flex:1}
+    .exam-index{color:#7d91ab;font-size:9px;letter-spacing:.13em;font-weight:800}
+    .exam-title{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin:2px 0}
+    .exam-desc{display:block;font-size:11px;color:var(--muted);max-width:240px}
+    .exam-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:10px;font-weight:800;color:var(--blue)}
+    .exam-arrow{position:absolute;right:17px;top:16px;color:#8ba9cb;font-size:18px}
+    .exam-card.active .exam-arrow{color:var(--blue)}
+    .result-panel{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+    .result-top{padding:22px 24px 18px;background:linear-gradient(110deg,#fff 0%,#f6faff 100%);border-bottom:1px solid var(--line)}
+    .result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .result-title-wrap{display:flex;gap:13px;align-items:center}
+    .result-symbol{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:#e8f2ff;color:var(--blue);flex:0 0 auto}
+    .result-symbol svg{width:25px;height:25px}
+    .result-heading{font-family:"Plus Jakarta Sans",sans-serif;font-size:21px;line-height:1.2;color:var(--navy);font-weight:800}
+    .result-sub{font-size:11px;color:var(--muted);margin-top:4px}
+    .date-pill{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:9px 12px;background:#eaf3ff;color:#1c579d;font-size:11px;font-weight:800;white-space:nowrap}
+    .result-body{padding:20px 24px 23px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:19px}
+    .stat{border:1px solid var(--line);border-radius:15px;padding:13px 15px;background:#fbfdff;position:relative;overflow:hidden}
+    .stat:after{content:"";position:absolute;width:54px;height:54px;border-radius:50%;right:-22px;bottom:-27px;background:#eaf3ff}
+    .stat-label{font-size:9px;letter-spacing:.1em;font-weight:800;color:#8293aa}
+    .stat-value{font-family:"Plus Jakarta Sans",sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-top:3px;line-height:1.2}
+    .table-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+    .search-wrap{position:relative;flex:1 1 260px;max-width:390px}
+    .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#8095af;font-size:17px;pointer-events:none}
+    .search{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 13px 11px 39px;color:var(--ink);background:#fff;outline:none;font-size:12px;transition:.15s}
+    .search:focus{border-color:#80afe5;box-shadow:0 0 0 3px #3985dc18}
+    .tools-right{display:flex;align-items:center;gap:8px}
+    .sort-select{border:1px solid var(--line);border-radius:11px;padding:10px 30px 10px 11px;background:#fff;color:#385675;font-size:11px;font-weight:700;max-width:210px}
+    .refresh{border:1px solid #d6e5f7;border-radius:11px;background:#f4f8fe;color:var(--blue);font-size:11px;font-weight:800;padding:10px 12px;display:inline-flex;align-items:center;gap:7px}
+    .refresh:hover{background:#eaf3ff}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:15px}
+    table{width:100%;border-collapse:collapse;min-width:620px}
+    thead{background:linear-gradient(100deg,#123d78,#1b5eaa);color:#fff}
+    th{padding:0;text-align:left;font-size:10px;letter-spacing:.07em}
+    .sort-button{width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:14px 15px;font-size:10px;font-weight:800;letter-spacing:.07em;display:flex;align-items:center;gap:7px}
+    .sort-button:hover{background:#ffffff12}
+    .sort-button span{color:#b9d8fc;font-size:12px}
+    td{padding:12px 15px;border-top:1px solid #edf2f8;font-size:12px}
+    tbody tr:nth-child(even){background:#f9fbfe}
+    tbody tr:hover{background:#eef6ff}
+    td.rank{width:64px;color:#8a9ab0;font-weight:800}
+    td.name{font-weight:700;color:#243f60}
+    td.time{color:#657992;font-variant-numeric:tabular-nums}
+    td.score{color:var(--blue);font-weight:800;font-variant-numeric:tabular-nums}
+    .empty{padding:42px 18px;text-align:center;color:var(--muted)}
+    .empty-illustration{width:78px;height:78px;margin:0 auto 10px;border-radius:25px;background:#f0f6ff;display:grid;place-items:center;color:#5d8fc9}
+    .empty-illustration svg{width:45px;height:45px}
+    .empty strong{display:block;color:var(--navy);font-family:"Plus Jakarta Sans",sans-serif;font-size:14px}
+    .empty p{font-size:11px;margin:5px auto 0;max-width:390px}
+    .table-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;color:#8191a7;font-size:10px}
+    .loading-dot{display:inline-block;width:7px;height:7px;background:#3985dc;border-radius:50%;margin-right:7px;animation:pulse 1s infinite alternate}
+    @keyframes pulse{to{opacity:.25;transform:scale(.7)}}
+    .quote{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;color:#6e819b;font-size:11px;padding:20px 10px 0}
+    .quote:before,.quote:after{content:"";height:1px;width:38px;background:#dce6f2}
+    footer{padding:0 0 27px;text-align:center;color:#8796aa;font-size:10px}
+    footer strong{color:#536a87}
+    @media(max-width:760px){
+      .shell{width:min(100% - 28px,650px)}
+      .top{padding:18px 0 78px}
+      .hero{grid-template-columns:1fr .65fr;gap:8px;padding-top:36px}
+      .hero-art{width:100%;max-width:250px}
+      .art-stage{min-height:200px}
+      h1{font-size:clamp(31px,6vw,45px)}
+      .hero-copy{font-size:13px}
+      .exam-card{padding:15px;min-height:120px;gap:12px}
+      .exam-icon{width:63px;height:63px}
+      .exam-icon svg{width:49px;height:49px}
+      .exam-title{font-size:18px}
+      .result-top{padding:18px}
+      .result-body{padding:17px 18px 20px}
+    }
+    @media(max-width:560px){
+      .shell{width:calc(100% - 22px)}
+      .top{padding:15px 0 74px}
+      .brand-mark{width:38px;height:38px;border-radius:13px}
+      .brand-name{font-size:10px}
+      .brand-sub{font-size:9px}
+      .year{font-size:9px;padding:7px 9px}
+      .hero{grid-template-columns:1fr;gap:0;padding-top:29px}
+      .hero-copy{max-width:100%;font-size:12px}
+      .art-stage{min-height:0;height:130px;justify-content:flex-end;margin-top:0}
+      .art-glow{width:140px;height:140px}
+      .hero-art{width:155px;max-width:155px;position:absolute;right:8px;bottom:-9px}
+      .hero-note{font-size:10px;margin-top:15px}
+      main{margin-top:-42px}
+      .stepbar{padding:10px 8px;gap:4px;border-radius:15px}
+      .step{gap:5px;font-size:9px}
+      .step-num{width:24px;height:24px;border-radius:8px;font-size:10px}
+      .section-intro{margin:24px 2px 12px}
+      .section-copy{font-size:11px}
+      .exam-grid{gap:9px}
+      .exam-card{display:block;min-height:155px;padding:12px;border-radius:17px}
+      .exam-icon{width:55px;height:55px;border-radius:15px;margin-bottom:8px}
+      .exam-icon svg{width:43px;height:43px}
+      .exam-title{font-size:16px}
+      .exam-desc{font-size:9px;line-height:1.35}
+      .exam-link{font-size:9px;margin-top:6px}
+      .exam-arrow{right:11px;top:10px;font-size:15px}
+      .result-panel{margin-top:15px;border-radius:19px}
+      .result-top{padding:15px 13px}
+      .result-head{display:block}
+      .result-title-wrap{gap:10px}
+      .result-symbol{width:39px;height:39px;border-radius:12px}
+      .result-heading{font-size:18px}
+      .result-sub{font-size:10px}
+      .date-pill{margin:12px 0 0 49px;font-size:10px;padding:7px 10px}
+      .result-body{padding:13px 11px 16px}
+      .stats{gap:6px;margin-bottom:14px}
+      .stat{padding:10px 8px;border-radius:12px}
+      .stat-label{font-size:8px;letter-spacing:.05em}
+      .stat-value{font-size:19px}
+      .table-tools{display:grid;grid-template-columns:1fr;gap:8px}
+      .search-wrap{max-width:none}
+      .tools-right{display:flex;width:100%}
+      .sort-select{flex:1;max-width:none}
+      .refresh{flex:0 0 auto}
+      .table-wrap{overflow:visible;border:0}
+      table{min-width:0;display:block}
+      thead{display:none}
+      tbody{display:grid;gap:8px}
+      tbody tr{display:grid;grid-template-columns:32px 1fr 1fr;gap:3px 9px;padding:11px;border:1px solid var(--line);border-radius:13px;background:#fff!important;box-shadow:0 3px 10px rgba(24,69,126,.025)}
+      tbody tr:hover{background:#f7fbff!important}
+      td{border:0;padding:0;font-size:11px}
+      td.rank{grid-column:1;grid-row:1/3;align-self:start;padding-top:2px}
+      td.name{grid-column:2/4;grid-row:1;font-size:12px;padding-bottom:5px}
+      td.time{grid-column:2;grid-row:2;font-size:10px}
+      td.score{grid-column:3;grid-row:2;text-align:right;font-size:11px}
+      td.time:before{content:"Sisa: ";color:#96a4b7;font-size:9px}
+      td.score:before{content:"Nilai: ";color:#96a4b7;font-size:9px;font-weight:600}
+      .empty{border:1px dashed var(--line);border-radius:14px;padding:28px 12px}
+      .table-foot{font-size:9px}
+      .quote{font-size:9px;gap:6px;padding-top:16px}
+      .quote:before,.quote:after{width:20px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <nav class="nav" aria-label="Identitas sekolah">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 8.5 12 4l9 4.5-9 4.5L3 8.5Z" stroke="white" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 10.3v5.1c3.3 2.4 7.7 2.4 11 0v-5.1M21 9v6" stroke="white" stroke-width="1.7" stroke-linecap="round"/><path d="M9 18.3c1.9.7 4.1.7 6 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="brand-name">SMP ISLAM AL HUDA BRONDONG<span class="brand-sub">RUANG NILAI · SEMPIA</span></div>
+        </div>
+        <span class="year">TAHUN AJARAN 2026/2027</span>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Portal Informasi Akademik</div>
+          <h1>Lihat Hasil<br>TKA-mu. <span style="color:#a9d4ff">✳</span></h1>
+          <p class="hero-copy">Pilih jenis ujian untuk melihat hasil Tes Kemampuan Akademik. Cari namamu, periksa sisa waktu, dan lihat nilai yang telah diperoleh.</p>
+          <div class="hero-note"><span>✦</span><span>Data hasil ujian diperbarui dari spreadsheet sekolah.</span></div>
+        </div>
+        <div class="art-stage">
+          <div class="art-glow"></div>
+          <svg class="hero-art" id="hero-literasi" viewBox="0 0 360 270" role="img" aria-label="Ilustrasi buku terbuka untuk ujian literasi">
+            <defs>
+              <linearGradient id="bookCover" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9BCBFF"/><stop offset="1" stop-color="#4389D7"/></linearGradient>
+              <linearGradient id="bookPage" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDEBFA"/></linearGradient>
+              <linearGradient id="pencil" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFE4A0"/><stop offset="1" stop-color="#F5A94E"/></linearGradient>
+            </defs>
+            <circle cx="183" cy="132" r="104" fill="#D7E9FF" opacity=".18"/>
+            <circle cx="64" cy="69" r="9" fill="#C4E2FF"/><circle cx="297" cy="61" r="6" fill="#D6EAFF"/>
+            <path d="M68 197c34 25 73 35 116 35s83-10 116-35" stroke="#B8D9FF" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+            <path d="M74 88c37-16 73-12 108 11v116c-34-23-71-27-108-11V88Z" fill="url(#bookCover)" stroke="#D9EBFF" stroke-width="3"/>
+            <path d="M286 88c-37-16-73-12-108 11v116c34-23 71-27 108-11V88Z" fill="url(#bookCover)" stroke="#D9EBFF" stroke-width="3"/>
+            <path d="M83 94c33-12 62-8 91 10v98c-29-17-59-21-91-10V94Z" fill="url(#bookPage)"/>
+            <path d="M277 94c-33-12-62-8-91 10v98c29-17 59-21 91-10V94Z" fill="url(#bookPage)"/>
+            <path d="M101 120c22-7 42-5 60 4M101 139c22-7 42-5 60 4M101 158c22-7 42-5 60 4M259 120c-22-7-42-5-60 4M259 139c-22-7-42-5-60 4M259 158c-22-7-42-5-60 4" stroke="#8CB5E2" stroke-width="4" stroke-linecap="round"/>
+            <path d="m236 39 17 8-52 112-17-8 52-112Z" fill="url(#pencil)" stroke="#FFE9BE" stroke-width="2"/>
+            <path d="m184 151 17 8-17 16-1-24Z" fill="#F3D4A3"/><path d="m184 175 1-24 8 4-9 20Z" fill="#294F7B"/>
+            <path d="m244 35 17 8-8 17-17-8 8-17Z" fill="#F5B95C"/>
+            <path d="m232 61 17 8" stroke="#FFF1D2" stroke-width="3"/>
+            <path d="m55 125 9 9-9 9-9-9 9-9ZM306 151l7 7-7 7-7-7 7-7Z" fill="#A8D3FF"/>
+            <path d="M176 62c8-12 23-12 31 0" stroke="#D2E8FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+          <svg class="hero-art" id="hero-numerasi" viewBox="0 0 360 270" role="img" aria-label="Ilustrasi kalkulator dan bentuk geometri untuk ujian numerasi" hidden>
+            <defs>
+              <linearGradient id="calcBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B9DCFF"/><stop offset="1" stop-color="#5C9CE4"/></linearGradient>
+              <linearGradient id="calcScreen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#F9FDFF"/><stop offset="1" stop-color="#DDEEFF"/></linearGradient>
+            </defs>
+            <circle cx="182" cy="133" r="106" fill="#D7E9FF" opacity=".18"/>
+            <circle cx="62" cy="70" r="8" fill="#C4E2FF"/><circle cx="296" cy="63" r="6" fill="#D6EAFF"/>
+            <rect x="111" y="44" width="139" height="190" rx="22" transform="rotate(7 111 44)" fill="url(#calcBody)" stroke="#D9EBFF" stroke-width="3"/>
+            <rect x="132" y="69" width="102" height="43" rx="9" transform="rotate(7 132 69)" fill="url(#calcScreen)"/>
+            <path d="m149 93 15 2m11 2 13 2m11 2 15 3" stroke="#4C83BD" stroke-width="4" stroke-linecap="round"/>
+            <g transform="rotate(7 180 160)">
+              <rect x="134" y="125" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="167" y="129" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="200" y="133" width="24" height="23" rx="6" fill="#EAF4FF"/>
+              <rect x="130" y="158" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="163" y="162" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="196" y="166" width="24" height="23" rx="6" fill="#EAF4FF"/>
+              <rect x="126" y="191" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="159" y="195" width="24" height="23" rx="6" fill="#EAF4FF"/><rect x="192" y="199" width="24" height="23" rx="6" fill="#EAF4FF"/>
+              <path d="M146 132v9m-4-4h8m25 4h8m-4-4v8m27-2h8" stroke="#3979BA" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <path d="m274 73 29 17-17 29-29-17 17-29Z" fill="#A9D2FF" stroke="#D9EBFF" stroke-width="3"/>
+            <path d="m275 85 8 5m-12 3 8 5m-12 3 8 5" stroke="#3979BA" stroke-width="3" stroke-linecap="round"/>
+            <path d="m73 170 23-40 23 40H73Z" fill="#6CA6E8" stroke="#D9EBFF" stroke-width="3"/>
+            <path d="M85 159h22" stroke="#EAF4FF" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="285" cy="183" r="17" fill="#E4F1FF" stroke="#A9D2FF" stroke-width="3"/>
+            <path d="M277 183h16m-8-8v16" stroke="#3979BA" stroke-width="3" stroke-linecap="round"/>
+            <path d="M72 92c8-12 21-12 29 0" stroke="#D2E8FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="stepbar" aria-label="Alur melihat hasil">
+      <div class="step active" id="step-1"><span class="step-num">01</span><span>Pilih ujian</span></div>
+      <div class="step" id="step-2"><span class="step-num">02</span><span>Cari nama</span></div>
+      <div class="step" id="step-3"><span class="step-num">03</span><span>Lihat hasil</span></div>
+    </div>
+
+    <section class="section-intro">
+      <p class="kicker">Langkah pertama</p>
+      <h2>Mau lihat hasil yang mana?</h2>
+      <p class="section-copy">Pilih jenis ujian yang ingin kamu lihat. Data dan ilustrasi akan menyesuaikan pilihanmu.</p>
+    </section>
+
+    <section class="exam-grid" aria-label="Pilih jenis ujian">
+      <button class="exam-card active" id="card-literasi" type="button" data-exam="literasi" aria-pressed="true">
+        <span class="exam-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none"><path d="M8 17c9-4 18-2 24 4v32c-7-6-16-8-24-4V17Z" fill="#6FA7E5" stroke="#397BBE" stroke-width="2"/><path d="M56 17c-9-4-18-2-24 4v32c7-6 16-8 24-4V17Z" fill="#A9D0F9" stroke="#397BBE" stroke-width="2"/><path d="M14 25c6-2 11-1 15 2m-15 7c6-2 11-1 15 2m21-11c-6-2-11-1-15 2m15 9c-6-2-11-1-15 2" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="m47 5 7 3-15 31-7-3L47 5Z" fill="#F6C66F" stroke="#D79B3D" stroke-width="1.5"/></svg>
+        </span>
+        <span class="exam-copy"><span class="exam-index">UJIAN 01</span><span class="exam-title">Literasi</span><span class="exam-desc">Kemampuan memahami, mengolah, dan mengevaluasi informasi.</span><span class="exam-link">Lihat hasil ujian <span>↗</span></span></span>
+        <span class="exam-arrow" aria-hidden="true">✳</span>
+      </button>
+
+      <button class="exam-card" id="card-numerasi" type="button" data-exam="numerasi" aria-pressed="false">
+        <span class="exam-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="15" y="5" width="34" height="54" rx="8" fill="#75A9E3" stroke="#397BBE" stroke-width="2"/><rect x="21" y="12" width="22" height="11" rx="3" fill="#EAF4FF"/><path d="M25 18h5m4 0h5" stroke="#397BBE" stroke-width="2" stroke-linecap="round"/><g fill="#EAF4FF"><rect x="21" y="29" width="7" height="7" rx="2"/><rect x="31" y="29" width="7" height="7" rx="2"/><rect x="41" y="29" width="3" height="7" rx="1.5"/><rect x="21" y="40" width="7" height="7" rx="2"/><rect x="31" y="40" width="7" height="7" rx="2"/><rect x="41" y="40" width="3" height="7" rx="1.5"/></g><path d="m7 12 5 9-10 0 5-9Z" fill="#F4C66F"/><circle cx="54" cy="48" r="6" fill="#A8D0F8"/></svg>
+        </span>
+        <span class="exam-copy"><span class="exam-index">UJIAN 02</span><span class="exam-title">Numerasi</span><span class="exam-desc">Kemampuan menggunakan angka, data, dan penalaran matematis.</span><span class="exam-link">Lihat hasil ujian <span>↗</span></span></span>
+        <span class="exam-arrow" aria-hidden="true">✳</span>
+      </button>
+    </section>
+
+    <section class="result-panel" id="result-panel" aria-live="polite">
+      <div class="result-top">
+        <div class="result-head">
+          <div class="result-title-wrap">
+            <div class="result-symbol" id="result-symbol">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5c3.5-1.5 7-1 9 1v13c-2-2-5.5-2.5-9-1v-13Zm18 0c-3.5-1.5-7-1-9 1v13c2-2 5.5-2.5 9-1v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div><div class="result-heading" id="result-title">Rekap hasil Literasi</div><div class="result-sub" id="result-subtitle">Daftar hasil ujian peserta didik</div></div>
+          </div>
+          <div class="date-pill">📅 <span id="exam-date">Tanggal pelaksanaan belum diatur</span></div>
+        </div>
+      </div>
+
+      <div class="result-body">
+        <div class="stats">
+          <div class="stat"><div class="stat-label">JUMLAH PESERTA</div><div class="stat-value" id="stat-total">—</div></div>
+          <div class="stat"><div class="stat-label">NILAI TERTINGGI</div><div class="stat-value" id="stat-high">—</div></div>
+          <div class="stat"><div class="stat-label">RATA-RATA NILAI</div><div class="stat-value" id="stat-average">—</div></div>
+        </div>
+
+        <div class="table-tools">
+          <label class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="search" type="search" placeholder="Cari nama peserta..." autocomplete="off" aria-label="Cari nama peserta"></label>
+          <div class="tools-right">
+            <select class="sort-select" id="sort-select" aria-label="Urutkan hasil">
+              <option value="nilai-desc">Nilai tertinggi</option>
+              <option value="nilai-asc">Nilai terendah</option>
+              <option value="namaLengkap-asc">Nama A–Z</option>
+              <option value="namaLengkap-desc">Nama Z–A</option>
+              <option value="sisaWaktu-asc">Sisa waktu tersingkat</option>
+              <option value="sisaWaktu-desc">Sisa waktu terlama</option>
+            </select>
+            <button class="refresh" id="refresh" type="button"><span>↻</span> Perbarui</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th style="width:65px">NO.</th>
+              <th><button class="sort-button" data-sort="namaLengkap" type="button">NAMA LENGKAP <span id="sort-name-icon">↕</span></button></th>
+              <th style="width:180px"><button class="sort-button" data-sort="sisaWaktu" type="button">SISA WAKTU <span id="sort-time-icon">↕</span></button></th>
+              <th style="width:130px"><button class="sort-button" data-sort="nilai" type="button">NILAI <span id="sort-score-icon">↓</span></button></th>
+            </tr></thead>
+            <tbody id="results-body">
+              <tr><td colspan="4"><div class="empty"><div class="empty-illustration">✦</div><strong>Menyiapkan data hasil ujian...</strong><p>Mohon tunggu sebentar.</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-foot"><span id="result-count">Menyiapkan data...</span><span>Urutan awal: nilai tertinggi ke terendah</span></div>
+      </div>
+    </section>
+
+    <div class="quote">Belajar, berusaha, dan bertumbuh. Setiap proses punya arti.</div>
+  </main>
+
+  <footer class="shell">© 2026 <strong>SMP Islam Al Huda Brondong</strong> · Ruang Nilai SEMPIA</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  /*
+   * PENGATURAN SUMBER DATA
+   * Publikasikan masing-masing tab Google Sheets sebagai CSV, lalu tempel URL-nya di bawah.
+   * File spreadsheet tidak perlu diunggah ke website.
+   */
+  const DATA_SOURCES = {
+    literasi: "TEMPEL_URL_CSV_GOOGLE_SHEETS_LITERASI_DI_SINI",
+    numerasi: "TEMPEL_URL_CSV_GOOGLE_SHEETS_NUMERASI_DI_SINI"
+  };
+
+  const state = {
+    exam: "literasi",
+    sortKey: "nilai",
+    sortDir: "desc",
+    search: "",
+    cache: { literasi: null, numerasi: null },
+    loading: false
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const examNames = { literasi: "Literasi", numerasi: "Numerasi" };
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[ch]);
+  }
+
+  function normalizeHeader(value) {
+    return String(value ?? "").replace(/^\uFEFF/, "").trim().toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[_-]+/g, " ").replace(/\s+/g, " ");
+  }
+
+  function parseCsv(text) {
+    const rows = [];
+    let row = [], cell = "", quoted = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i], next = text[i + 1];
+      if (ch === '"' && quoted && next === '"') { cell += '"'; i++; }
+      else if (ch === '"') { quoted = !quoted; }
+      else if (ch === "," && !quoted) { row.push(cell); cell = ""; }
+      else if ((ch === "\n" || ch === "\r") && !quoted) {
+        if (ch === "\r" && next === "\n") i++;
+        row.push(cell); cell = "";
+        if (row.some(v => String(v).trim() !== "")) rows.push(row);
+        row = [];
+      } else cell += ch;
+    }
+    if (cell.length || row.length) {
+      row.push(cell);
+      if (row.some(v => String(v).trim() !== "")) rows.push(row);
+    }
+    if (!rows.length) return [];
+    const headers = rows.shift().map(normalizeHeader);
+    return rows.map(values => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = values[i] ?? "");
+      return obj;
+    });
+  }
+
+  function getField(row, aliases) {
+    for (const alias of aliases) {
+      const key = normalizeHeader(alias);
+      if (Object.prototype.hasOwnProperty.call(row, key)) return row[key];
+    }
+    return "";
+  }
+
+  function parseScore(value) {
+    let s = String(value ?? "").trim().replace(/\s/g, "");
+    if (!s) return null;
+    if (s.includes(",") && !s.includes(".")) s = s.replace(",", ".");
+    else if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "").replace(",", ".");
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function timeToSeconds(value) {
+    const s = String(value ?? "").trim();
+    const parts = s.split(":").map(Number);
+    if (parts.length === 3 && parts.every(Number.isFinite)) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    if (parts.length === 2 && parts.every(Number.isFinite)) return parts[0] * 60 + parts[1];
+    return null;
+  }
+
+  function parseDate(value) {
+    const s = String(value ?? "").trim();
+    if (!s) return "";
+    const m = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+    if (m) {
+      const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+      return `${Number(m[1])} ${months[Number(m[2])-1] || m[2]} ${m[3]}`;
+    }
+    return s;
+  }
+
+  function normalizeRows(rows) {
+    return rows.map(row => ({
+      namaLengkap: String(getField(row, ["Nama Lengkap", "Nama", "Name"])).trim(),
+      sisaWaktu: String(getField(row, ["Sisa Waktu", "Waktu Tersisa", "Remaining Time"])).trim(),
+      nilai: parseScore(getField(row, ["Nilai", "Skor", "Score"])),
+      tanggal: parseDate(getField(row, ["Tanggal Pelaksanaan", "Tanggal Ujian", "Tanggal", "Date"]))
+    })).filter(p => p.namaLengkap);
+  }
+
+  function sourceConfigured(url) {
+    return url && !url.startsWith("TEMPEL_URL_") && /^https:\/\/.+/i.test(url);
+  }
+
+  async function loadExam(exam, force = false) {
+    if (!force && state.cache[exam]) return state.cache[exam];
+    const url = DATA_SOURCES[exam];
+    if (!sourceConfigured(url)) {
+      state.cache[exam] = { peserta: [], tanggal: "", error: "URL spreadsheet belum diatur." };
+      return state.cache[exam];
+    }
+    const response = await fetch(url + (url.includes("?") ? "&" : "?") + "cacheBust=" + Date.now(), { cache: "no-store" });
+    if (!response.ok) throw new Error(`Data ${examNames[exam]} tidak dapat dimuat (${response.status}).`);
+    const rows = normalizeRows(parseCsv(await response.text()));
+    const tanggal = rows.find(p => p.tanggal)?.tanggal || "";
+    state.cache[exam] = { peserta: rows, tanggal, error: "" };
+    return state.cache[exam];
+  }
+
+  function showEmpty(title, message, icon = "✦") {
+    $("results-body").innerHTML = `<tr><td colspan="4"><div class="empty"><div class="empty-illustration">${icon}</div><strong>${escapeHtml(title)}</strong><p>${escapeHtml(message)}</p></div></td></tr>`;
+  }
+
+  function formatNumber(value) {
+    return Number(value).toLocaleString("id-ID", { maximumFractionDigits: 2 });
+  }
+
+  function getSorted(data) {
+    const q = state.search.trim().toLocaleLowerCase("id");
+    const list = data.peserta.filter(p => p.namaLengkap.toLocaleLowerCase("id").includes(q));
+    list.sort((a, b) => {
+      let result = 0;
+      if (state.sortKey === "namaLengkap") {
+        result = a.namaLengkap.localeCompare(b.namaLengkap, "id", { sensitivity: "base" });
+      } else if (state.sortKey === "sisaWaktu") {
+        const av = timeToSeconds(a.sisaWaktu), bv = timeToSeconds(b.sisaWaktu);
+        result = (av ?? Number.POSITIVE_INFINITY) - (bv ?? Number.POSITIVE_INFINITY);
+      } else {
+        result = (a.nilai ?? Number.NEGATIVE_INFINITY) - (b.nilai ?? Number.NEGATIVE_INFINITY);
+      }
+      if (result === 0) result = a.namaLengkap.localeCompare(b.namaLengkap, "id", { sensitivity: "base" });
+      return state.sortDir === "asc" ? result : -result;
+    });
+    return list;
+  }
+
+  function updateSortUI() {
+    const icons = {
+      namaLengkap: $("sort-name-icon"),
+      sisaWaktu: $("sort-time-icon"),
+      nilai: $("sort-score-icon")
+    };
+    Object.entries(icons).forEach(([key, el]) => {
+      el.textContent = state.sortKey === key ? (state.sortDir === "asc" ? "↑" : "↓") : "↕";
+    });
+    $("sort-select").value = `${state.sortKey}-${state.sortDir}`;
+  }
+
+  function render(data) {
+    const exam = state.exam;
+    const title = examNames[exam];
+    $("result-title").textContent = `Rekap hasil ${title}`;
+    $("result-subtitle").textContent = `Daftar hasil ujian ${title} peserta didik`;
+    $("exam-date").textContent = data.tanggal || "Tanggal pelaksanaan belum diatur";
+
+    const scores = data.peserta.map(p => p.nilai).filter(Number.isFinite);
+    $("stat-total").textContent = data.peserta.length.toLocaleString("id-ID");
+    $("stat-high").textContent = scores.length ? formatNumber(Math.max(...scores)) : "—";
+    $("stat-average").textContent = scores.length ? formatNumber(scores.reduce((a,b)=>a+b,0)/scores.length) : "—";
+
+    const list = getSorted(data);
+    if (!list.length) {
+      if (data.error === "URL spreadsheet belum diatur.") {
+        showEmpty("Data sedang disiapkan", "Admin sekolah sedang menyiapkan sumber data hasil ujian. Silakan kunjungi kembali setelah pengumuman dipublikasikan.", "✎");
+      } else if (data.error) {
+        showEmpty("Data belum dapat dimuat", data.error + " Periksa kembali koneksi atau hubungi admin sekolah.", "!");
+      } else if (data.peserta.length && state.search) {
+        showEmpty("Nama tidak ditemukan", "Coba periksa ejaan nama atau gunakan kata kunci yang lebih pendek.", "⌕");
+      } else {
+        showEmpty("Belum ada data peserta", "Data hasil ujian untuk kategori ini belum tersedia.", "✦");
+      }
+    } else {
+      $("results-body").innerHTML = list.map((p, i) => `
+        <tr>
+          <td class="rank">${i + 1}</td>
+          <td class="name">${escapeHtml(p.namaLengkap)}</td>
+          <td class="time">${escapeHtml(p.sisaWaktu || "—")}</td>
+          <td class="score">${p.nilai === null ? "—" : escapeHtml(formatNumber(p.nilai))}</td>
+        </tr>`).join("");
+    }
+    $("result-count").textContent = `Menampilkan ${list.length} dari ${data.peserta.length} peserta`;
+    updateSortUI();
+    $("step-1").classList.add("active");
+    $("step-2").classList.toggle("active", state.search.length > 0);
+    $("step-3").classList.toggle("active", list.length > 0);
+  }
+
+  async function selectExam(exam, force = false) {
+    const examChanged = state.exam !== exam;
+    state.exam = exam;
+    if (examChanged) { state.sortKey = "nilai"; state.sortDir = "desc"; }
+    state.search = "";
+    $("search").value = "";
+    document.querySelectorAll("[data-exam]").forEach(btn => {
+      const active = btn.dataset.exam === exam;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+    $("hero-literasi").hidden = exam !== "literasi";
+    $("hero-numerasi").hidden = exam !== "numerasi";
+    $("result-symbol").innerHTML = exam === "literasi"
+      ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5c3.5-1.5 7-1 9 1v13c-2-2-5.5-2.5-9-1v-13Zm18 0c-3.5-1.5-7-1-9 1v13c2-2 5.5-2.5 9-1v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2.5" width="14" height="19" rx="2.5" stroke="currentColor" stroke-width="1.7"/><rect x="8" y="5.5" width="8" height="3.5" rx="1" fill="currentColor" opacity=".2"/><path d="M8.5 12h1m5 0h1m-7 3.5h1m5 0h1m-7 3.5h1m5 0h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    $("results-body").innerHTML = '<tr><td colspan="4"><div class="empty"><div class="empty-illustration"><span class="loading-dot"></span></div><strong>Memuat hasil ujian...</strong><p>Sedang mengambil data terbaru dari spreadsheet.</p></div></td></tr>';
+    try {
+      const data = await loadExam(exam, force);
+      render(data);
+    } catch (error) {
+      const data = { peserta: [], tanggal: "", error: error.message };
+      state.cache[exam] = data;
+      render(data);
+    }
+  }
+
+  document.querySelectorAll("[data-exam]").forEach(btn => {
+    btn.addEventListener("click", () => selectExam(btn.dataset.exam));
+  });
+
+  document.querySelectorAll("[data-sort]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.sort;
+      if (state.sortKey === key) state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+      else { state.sortKey = key; state.sortDir = key === "nilai" ? "desc" : "asc"; }
+      render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+    });
+  });
+
+  $("sort-select").addEventListener("change", e => {
+    const [key, dir] = e.target.value.split("-");
+    state.sortKey = key;
+    state.sortDir = dir;
+    render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+  });
+
+  $("search").addEventListener("input", e => {
+    state.search = e.target.value;
+    render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+  });
+
+  $("refresh").addEventListener("click", async () => {
+    const button = $("refresh");
+    button.disabled = true;
+    button.innerHTML = "<span>↻</span> Memuat...";
+    await selectExam(state.exam, true);
+    button.disabled = false;
+    button.innerHTML = "<span>↻</span> Perbarui";
+  });
+
+  selectExam("literasi");
+})();
+</script>
+</body>
+</html>
