@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123d78">
+  <meta name="description" content="Portal pengumuman hasil Tes Kemampuan Akademik SMP Islam Al Huda Brondong.">
+  <title>Ruang TKA SEMPIA | Hasil Ujian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#123d78;--blue:#1c5eae;--blue2:#3985dc;--sky:#eaf3ff;
+      --ink:#172b45;--muted:#6d7f98;--line:#e0e9f5;--paper:#fff;
+      --page:#f5f8fd;--green:#15845f;--shadow:0 18px 55px rgba(24,69,126,.09);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.55}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .shell{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+    .top{
+      position:relative;overflow:hidden;padding:22px 0 94px;
+      background:linear-gradient(118deg,#102f5e 0%,#164b8d 48%,#2877c8 100%);color:#fff;
+    }
+    .top:before,.top:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}
+    .top:before{width:560px;height:560px;right:-170px;top:-360px}
+    .top:after{width:390px;height:390px;right:-80px;top:-280px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.16)}
+    .brand-mark svg{width:25px;height:25px}
+    .brand-name{font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:800;letter-spacing:.09em;line-height:1.35}
+    .brand-sub{display:block;font-size:10px;font-weight:500;letter-spacing:.04em;color:#c8ddf7;margin-top:3px}
+    .year{font-size:11px;font-weight:800;letter-spacing:.06em;color:#e2efff;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);padding:8px 13px;border-radius:999px;white-space:nowrap}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:34px;padding-top:50px;position:relative;z-index:1}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#c8e0ff;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:22px;height:2px;background:#8ec5ff;border-radius:3px}
+    h1{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.055em;margin:13px 0 15px;font-weight:800}
+    .hero-copy{max-width:570px;color:#d9e9fb;font-size:15px;margin:0}
+    .hero-note{display:flex;align-items:center;gap:9px;margin-top:23px;color:#d8e9fb;font-size:12px}
+    .hero-note span:first-child{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#ffffff1e}
+    .art-stage{min-height:255px;display:grid;place-items:center;position:relative}
+    .art-glow{position:absolute;width:270px;height:270px;border-radius:50%;background:rgba(173,213,255,.18);filter:blur(26px)}
+    .hero-art{display:block;position:relative;width:min(100%,370px);height:auto;object-fit:contain;border-radius:20px;filter:drop-shadow(0 22px 24px rgba(4,24,53,.2));animation:float 5s ease-in-out infinite}
+    .hero-art[hidden]{display:none}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    main{position:relative;margin-top:-48px;padding-bottom:42px;z-index:3}
+    .section-intro{margin:30px 0 14px}
+    .kicker{color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px}
+    h2{font-family:"Plus Jakarta Sans",sans-serif;color:var(--navy);font-size:clamp(22px,3vw,30px);letter-spacing:-.04em;line-height:1.2;margin:0}
+    .section-copy{font-size:13px;color:var(--muted);margin:7px 0 0}
+    .exam-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .exam-card{
+      position:relative;overflow:hidden;display:flex;align-items:center;gap:17px;text-align:left;
+      border:1px solid var(--line);border-radius:22px;padding:19px;background:#fff;color:var(--ink);
+      box-shadow:0 8px 26px rgba(28,73,128,.045);transition:transform .2s,border-color .2s,box-shadow .2s;
+      min-height:132px;
+    }
+    .exam-card:hover{transform:translateY(-3px);border-color:#a9c8ed;box-shadow:0 15px 32px rgba(28,73,128,.1)}
+    .exam-card.active{border-color:#4e8ed5;box-shadow:0 0 0 3px rgba(57,133,220,.12),0 14px 30px rgba(28,73,128,.08);background:linear-gradient(110deg,#fff 50%,#f1f7ff)}
+    .exam-card:focus-visible,.sort-button:focus-visible,.refresh:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #7db7f7;outline-offset:3px}
+    .exam-icon{width:76px;height:76px;border-radius:20px;background:linear-gradient(145deg,#eaf3ff,#d9eaff);display:grid;place-items:center;flex:0 0 auto}
+    .exam-icon img{display:block;width:57px;height:57px;object-fit:contain}
+    .exam-copy{min-width:0;flex:1}
+    .exam-index{color:#7d91ab;font-size:9px;letter-spacing:.13em;font-weight:800}
+    .exam-title{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin:2px 0}
+    .exam-desc{display:block;font-size:11px;color:var(--muted);max-width:240px}
+    .exam-link{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:10px;font-weight:800;color:var(--blue)}
+    .exam-arrow{position:absolute;right:17px;top:16px;color:#8ba9cb;font-size:18px}
+    .exam-card.active .exam-arrow{color:var(--blue)}
+    .result-panel{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+    .result-top{padding:22px 24px 18px;background:linear-gradient(110deg,#fff 0%,#f6faff 100%);border-bottom:1px solid var(--line)}
+    .result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .result-title-wrap{display:flex;gap:13px;align-items:center}
+    .result-symbol{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:#e8f2ff;color:var(--blue);flex:0 0 auto}
+    .result-symbol svg{width:25px;height:25px}
+    .result-heading{font-family:"Plus Jakarta Sans",sans-serif;font-size:21px;line-height:1.2;color:var(--navy);font-weight:800}
+    .result-sub{font-size:11px;color:var(--muted);margin-top:4px}
+    .date-pill{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:9px 12px;background:#eaf3ff;color:#1c579d;font-size:11px;font-weight:800;white-space:nowrap}
+    .result-body{padding:20px 24px 23px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:19px}
+    .stat{border:1px solid var(--line);border-radius:15px;padding:13px 15px;background:#fbfdff;position:relative;overflow:hidden}
+    .stat:after{content:"";position:absolute;width:54px;height:54px;border-radius:50%;right:-22px;bottom:-27px;background:#eaf3ff}
+    .stat-label{font-size:9px;letter-spacing:.1em;font-weight:800;color:#8293aa}
+    .stat-value{font-family:"Plus Jakarta Sans",sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-top:3px;line-height:1.2}
+    .table-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+    .search-wrap{position:relative;flex:1 1 260px;max-width:390px}
+    .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#8095af;font-size:17px;pointer-events:none}
+    .search{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 13px 11px 39px;color:var(--ink);background:#fff;outline:none;font-size:12px;transition:.15s}
+    .search:focus{border-color:#80afe5;box-shadow:0 0 0 3px #3985dc18}
+    .tools-right{display:flex;align-items:center;gap:8px}
+    .sort-select{border:1px solid var(--line);border-radius:11px;padding:10px 30px 10px 11px;background:#fff;color:#385675;font-size:11px;font-weight:700;max-width:210px}
+    .refresh{border:1px solid #d6e5f7;border-radius:11px;background:#f4f8fe;color:var(--blue);font-size:11px;font-weight:800;padding:10px 12px;display:inline-flex;align-items:center;gap:7px}
+    .refresh:hover{background:#eaf3ff}
+    .auto-refresh-status{font-size:10px;font-weight:700;color:#23805f;white-space:nowrap}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:15px}
+    table{width:100%;border-collapse:collapse;min-width:620px}
+    thead{background:linear-gradient(100deg,#123d78,#1b5eaa);color:#fff}
+    th{padding:0;text-align:left;font-size:10px;letter-spacing:.07em}
+    .sort-button{width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:14px 15px;font-size:10px;font-weight:800;letter-spacing:.07em;display:flex;align-items:center;gap:7px}
+    .sort-button:hover{background:#ffffff12}
+    .sort-button span{color:#b9d8fc;font-size:12px}
+    td{padding:12px 15px;border-top:1px solid #edf2f8;font-size:12px}
+    tbody tr:nth-child(even){background:#f9fbfe}
+    tbody tr:hover{background:#eef6ff}
+    td.rank{width:64px;color:#8a9ab0;font-weight:800}
+    td.name{font-weight:700;color:#243f60}
+    td.time{color:#657992;font-variant-numeric:tabular-nums}
+    td.score{color:var(--blue);font-weight:800;font-variant-numeric:tabular-nums}
+    .empty{padding:42px 18px;text-align:center;color:var(--muted)}
+    .empty-illustration{width:78px;height:78px;margin:0 auto 10px;border-radius:25px;background:#f0f6ff;display:grid;place-items:center;color:#5d8fc9}
+    .empty-illustration svg{width:45px;height:45px}
+    .empty strong{display:block;color:var(--navy);font-family:"Plus Jakarta Sans",sans-serif;font-size:14px}
+    .empty p{font-size:11px;margin:5px auto 0;max-width:390px}
+    .table-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;color:#8191a7;font-size:10px}
+    .loading-dot{display:inline-block;width:7px;height:7px;background:#3985dc;border-radius:50%;margin-right:7px;animation:pulse 1s infinite alternate}
+    @keyframes pulse{to{opacity:.25;transform:scale(.7)}}
+    .quote{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;color:#6e819b;font-size:11px;padding:20px 10px 0}
+    .quote:before,.quote:after{content:"";height:1px;width:38px;background:#dce6f2}
+    footer{padding:0 0 27px;text-align:center;color:#8796aa;font-size:10px}
+    footer strong{color:#536a87}
+    @media(max-width:760px){
+      .shell{width:min(100% - 28px,650px)}
+      .top{padding:18px 0 78px}
+      .hero{grid-template-columns:1fr .65fr;gap:8px;padding-top:36px}
+      .hero-art{width:100%;max-width:250px}
+      .art-stage{min-height:200px}
+      h1{font-size:clamp(31px,6vw,45px)}
+      .hero-copy{font-size:13px}
+      .exam-card{padding:15px;min-height:120px;gap:12px}
+      .exam-icon{width:63px;height:63px}
+      .exam-icon img{width:49px;height:49px}
+      .exam-title{font-size:18px}
+      .result-top{padding:18px}
+      .result-body{padding:17px 18px 20px}
+    }
+    @media(max-width:560px){
+      .shell{width:calc(100% - 22px)}
+      .top{padding:15px 0 74px}
+      .brand-mark{width:38px;height:38px;border-radius:13px}
+      .brand-name{font-size:10px}
+      .brand-sub{font-size:9px}
+      .year{font-size:9px;padding:7px 9px}
+      .hero{grid-template-columns:1fr;gap:0;padding-top:29px}
+      .hero-copy{max-width:100%;font-size:12px}
+      .art-stage{min-height:0;height:170px;display:grid;place-items:center;justify-content:center;margin-top:8px}
+      .art-glow{width:140px;height:140px}
+      .hero-art{width:190px;max-width:190px;position:relative;right:auto;left:auto;bottom:auto;margin:0 auto}
+      .hero-note{font-size:10px;margin-top:15px}
+      main{margin-top:-42px}
+      .section-intro{margin:24px 2px 12px}
+      .section-copy{font-size:11px}
+      .exam-grid{gap:9px}
+      .exam-card{display:block;min-height:155px;padding:12px;border-radius:17px}
+      .exam-icon{width:55px;height:55px;border-radius:15px;margin-bottom:8px}
+      .exam-icon img{width:43px;height:43px}
+      .exam-title{font-size:16px}
+      .exam-desc{font-size:9px;line-height:1.35}
+      .exam-link{font-size:9px;margin-top:6px}
+      .exam-arrow{right:11px;top:10px;font-size:15px}
+      .result-panel{margin-top:15px;border-radius:19px}
+      .result-top{padding:15px 13px}
+      .result-head{display:block}
+      .result-title-wrap{gap:10px}
+      .result-symbol{width:39px;height:39px;border-radius:12px}
+      .result-heading{font-size:18px}
+      .result-sub{font-size:10px}
+      .date-pill{margin:12px 0 0 49px;font-size:10px;padding:7px 10px}
+      .result-body{padding:13px 11px 16px}
+      .stats{gap:6px;margin-bottom:14px}
+      .stat{padding:10px 8px;border-radius:12px}
+      .stat-label{font-size:8px;letter-spacing:.05em}
+      .stat-value{font-size:19px}
+      .table-tools{display:grid;grid-template-columns:1fr;gap:8px}
+      .search-wrap{max-width:none}
+      .tools-right{display:flex;width:100%;flex-wrap:wrap}
+      .auto-refresh-status{order:2;width:100%;font-size:9px}
+      .sort-select{flex:1;max-width:none}
+      .refresh{flex:0 0 auto}
+      .table-wrap{overflow:visible;border:0}
+      table{min-width:0;display:block}
+      thead{display:none}
+      tbody{display:grid;gap:8px}
+      tbody tr{display:grid;grid-template-columns:32px 1fr 1fr;gap:3px 9px;padding:11px;border:1px solid var(--line);border-radius:13px;background:#fff!important;box-shadow:0 3px 10px rgba(24,69,126,.025)}
+      tbody tr:hover{background:#f7fbff!important}
+      td{border:0;padding:0;font-size:11px}
+      td.rank{grid-column:1;grid-row:1/3;align-self:start;padding-top:2px}
+      td.name{grid-column:2/4;grid-row:1;font-size:12px;padding-bottom:5px}
+      td.time{grid-column:2;grid-row:2;font-size:10px}
+      td.score{grid-column:3;grid-row:2;text-align:right;font-size:11px}
+      td.time:before{content:"Sisa: ";color:#96a4b7;font-size:9px}
+      td.score:before{content:"Nilai: ";color:#96a4b7;font-size:9px;font-weight:600}
+      .empty{border:1px dashed var(--line);border-radius:14px;padding:28px 12px}
+      .table-foot{font-size:9px}
+      .quote{font-size:9px;gap:6px;padding-top:16px}
+      .quote:before,.quote:after{width:20px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <nav class="nav" aria-label="Identitas sekolah">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 8.5 12 4l9 4.5-9 4.5L3 8.5Z" stroke="white" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 10.3v5.1c3.3 2.4 7.7 2.4 11 0v-5.1M21 9v6" stroke="white" stroke-width="1.7" stroke-linecap="round"/><path d="M9 18.3c1.9.7 4.1.7 6 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="brand-name">SMP ISLAM AL HUDA BRONDONG<span class="brand-sub">RUANG NILAI · SEMPIA</span></div>
+        </div>
+        <span class="year">TAHUN AJARAN 2026/2027</span>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Portal Informasi Akademik</div>
+          <h1>Lihat Hasil<br>TKA-mu. <span style="color:#a9d4ff">✳</span></h1>
+          <p class="hero-copy">Pilih jenis ujian untuk melihat hasil Tes Kemampuan Akademik. Cari namamu, periksa sisa waktu, dan lihat nilai yang telah diperoleh.</p>
+          <div class="hero-note"><span>✦</span><span>Data hasil ujian diperbarui dari spreadsheet sekolah.</span></div>
+        </div>
+        <div class="art-stage">
+          <div class="art-glow"></div>
+          <img class="hero-art" id="hero-literasi" src="assets/hero-literasi.png" alt="Ilustrasi buku terbuka dan pensil untuk Literasi">
+          <img class="hero-art" id="hero-numerasi" src="assets/hero-numerasi.png" alt="Ilustrasi kalkulator dan bentuk geometri untuk Numerasi" hidden>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="exam-grid" aria-label="Pilih jenis ujian">
+      <button class="exam-card active" id="card-literasi" type="button" data-exam="literasi" aria-pressed="true">
+        <span class="exam-icon" aria-hidden="true">
+          <img src="assets/icon-literasi.png" alt="" loading="lazy">
+        </span>
+        <span class="exam-copy"><span class="exam-index">UJIAN 01</span><span class="exam-title">Literasi</span><span class="exam-desc">Kemampuan memahami, mengolah, dan mengevaluasi informasi.</span><span class="exam-link">Lihat hasil ujian <span>↗</span></span></span>
+        <span class="exam-arrow" aria-hidden="true">✳</span>
+      </button>
+
+      <button class="exam-card" id="card-numerasi" type="button" data-exam="numerasi" aria-pressed="false">
+        <span class="exam-icon" aria-hidden="true">
+          <img src="assets/icon-numerasi.png" alt="" loading="lazy">
+        </span>
+        <span class="exam-copy"><span class="exam-index">UJIAN 02</span><span class="exam-title">Numerasi</span><span class="exam-desc">Kemampuan menggunakan angka, data, dan penalaran matematis.</span><span class="exam-link">Lihat hasil ujian <span>↗</span></span></span>
+        <span class="exam-arrow" aria-hidden="true">✳</span>
+      </button>
+    </section>
+
+    <section class="result-panel" id="result-panel" aria-live="polite">
+      <div class="result-top">
+        <div class="result-head">
+          <div class="result-title-wrap">
+            <div class="result-symbol" id="result-symbol">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5c3.5-1.5 7-1 9 1v13c-2-2-5.5-2.5-9-1v-13Zm18 0c-3.5-1.5-7-1-9 1v13c2-2 5.5-2.5 9-1v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div><div class="result-heading" id="result-title">Rekap hasil Literasi</div><div class="result-sub" id="result-subtitle">Daftar hasil ujian peserta didik</div></div>
+          </div>
+          <div class="date-pill">📅 <span id="exam-date">Tanggal pelaksanaan belum diatur</span></div>
+        </div>
+      </div>
+
+      <div class="result-body">
+        <div class="stats">
+          <div class="stat"><div class="stat-label">JUMLAH PESERTA</div><div class="stat-value" id="stat-total">—</div></div>
+          <div class="stat"><div class="stat-label">NILAI TERTINGGI</div><div class="stat-value" id="stat-high">—</div></div>
+          <div class="stat"><div class="stat-label">RATA-RATA NILAI</div><div class="stat-value" id="stat-average">—</div></div>
+        </div>
+
+        <div class="table-tools">
+          <label class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="search" type="search" placeholder="Cari nama peserta..." autocomplete="off" aria-label="Cari nama peserta"></label>
+          <div class="tools-right">
+            <select class="sort-select" id="sort-select" aria-label="Urutkan hasil">
+              <option value="nilai-desc">Nilai tertinggi</option>
+              <option value="nilai-asc">Nilai terendah</option>
+              <option value="namaLengkap-asc">Nama A–Z</option>
+              <option value="namaLengkap-desc">Nama Z–A</option>
+              <option value="sisaWaktu-asc">Sisa waktu tersingkat</option>
+              <option value="sisaWaktu-desc">Sisa waktu terlama</option>
+            </select>
+            <span class="auto-refresh-status" id="auto-refresh-status" aria-live="polite">● Auto refresh setiap 10 detik</span>
+            <button class="refresh" id="refresh" type="button"><span>↻</span> Perbarui</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th style="width:65px">NO.</th>
+              <th><button class="sort-button" data-sort="namaLengkap" type="button">NAMA LENGKAP <span id="sort-name-icon">↕</span></button></th>
+              <th style="width:180px"><button class="sort-button" data-sort="sisaWaktu" type="button">SISA WAKTU <span id="sort-time-icon">↕</span></button></th>
+              <th style="width:130px"><button class="sort-button" data-sort="nilai" type="button">NILAI <span id="sort-score-icon">↓</span></button></th>
+            </tr></thead>
+            <tbody id="results-body">
+              <tr><td colspan="4"><div class="empty"><div class="empty-illustration">✦</div><strong>Menyiapkan data hasil ujian...</strong><p>Mohon tunggu sebentar.</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-foot"><span id="result-count">Menyiapkan data...</span><span>Urutan awal: nilai tertinggi ke terendah</span></div>
+      </div>
+    </section>
+
+    <div class="quote">Belajar, berusaha, dan bertumbuh. Setiap proses punya arti.</div>
+  </main>
+
+  <footer class="shell">© 2026 <strong>SMP Islam Al Huda Brondong</strong> · Ruang Nilai SEMPIA</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  /*
+   * PENGATURAN SUMBER DATA
+   * Publikasikan masing-masing tab Google Sheets sebagai CSV, lalu tempel URL-nya di bawah.
+   * File spreadsheet tidak perlu diunggah ke website.
+   */
+  // Cukup satu URL CSV untuk satu sheet gabungan Literasi + Numerasi.
+  const DATA_SOURCE = "TEMPEL_URL_CSV_GOOGLE_SHEETS_DATA_TKA_DI_SINI";
+
+  const state = {
+    exam: "literasi",
+    sortKey: "nilai",
+    sortDir: "desc",
+    search: "",
+    cache: { literasi: null, numerasi: null },
+    allRows: null,
+    lastUpdated: null,
+    refreshing: false
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const examNames = { literasi: "Literasi", numerasi: "Numerasi" };
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[ch]);
+  }
+
+  function normalizeHeader(value) {
+    return String(value ?? "").replace(/^\uFEFF/, "").trim().toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[_-]+/g, " ").replace(/\s+/g, " ");
+  }
+
+  function parseCsv(text) {
+    const rows = [];
+    let row = [], cell = "", quoted = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i], next = text[i + 1];
+      if (ch === '"' && quoted && next === '"') { cell += '"'; i++; }
+      else if (ch === '"') { quoted = !quoted; }
+      else if (ch === "," && !quoted) { row.push(cell); cell = ""; }
+      else if ((ch === "\n" || ch === "\r") && !quoted) {
+        if (ch === "\r" && next === "\n") i++;
+        row.push(cell); cell = "";
+        if (row.some(v => String(v).trim() !== "")) rows.push(row);
+        row = [];
+      } else cell += ch;
+    }
+    if (cell.length || row.length) {
+      row.push(cell);
+      if (row.some(v => String(v).trim() !== "")) rows.push(row);
+    }
+    if (!rows.length) return [];
+    const headers = rows.shift().map(normalizeHeader);
+    return rows.map(values => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = values[i] ?? "");
+      return obj;
+    });
+  }
+
+  function getField(row, aliases) {
+    for (const alias of aliases) {
+      const key = normalizeHeader(alias);
+      if (Object.prototype.hasOwnProperty.call(row, key)) return row[key];
+    }
+    return "";
+  }
+
+  function parseScore(value) {
+    let s = String(value ?? "").trim().replace(/\s/g, "");
+    if (!s) return null;
+    if (s.includes(",") && !s.includes(".")) s = s.replace(",", ".");
+    else if (s.includes(",") && s.includes(".")) s = s.replace(/\./g, "").replace(",", ".");
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function timeToSeconds(value) {
+    const s = String(value ?? "").trim();
+    const parts = s.split(":").map(Number);
+    if (parts.length === 3 && parts.every(Number.isFinite)) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    if (parts.length === 2 && parts.every(Number.isFinite)) return parts[0] * 60 + parts[1];
+    return null;
+  }
+
+  function parseDate(value) {
+    const s = String(value ?? "").trim();
+    if (!s) return "";
+    const m = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+    if (m) {
+      const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+      return `${Number(m[1])} ${months[Number(m[2])-1] || m[2]} ${m[3]}`;
+    }
+    return s;
+  }
+
+  function normalizeRows(rows) {
+    return rows.map(row => {
+      const rawType = normalizeHeader(getField(row, ["Jenis Ujian", "Tipe Ujian", "Jenis", "Tipe"]));
+      const jenisUjian = rawType === "literasi" || rawType === "numerasi" ? rawType : "";
+      return {
+        jenisUjian,
+        namaLengkap: String(getField(row, ["Nama Lengkap", "Nama", "Name"])).trim(),
+        sisaWaktu: String(getField(row, ["Sisa Waktu", "Waktu Tersisa", "Remaining Time"])).trim(),
+        nilai: parseScore(getField(row, ["Nilai", "Skor", "Score"])),
+        tanggal: parseDate(getField(row, ["Tanggal Pelaksanaan", "Tanggal Ujian", "Tanggal", "Date"]))
+      };
+    }).filter(p => p.namaLengkap && p.jenisUjian);
+  }
+
+  function sourceConfigured(url) {
+    return url && !url.startsWith("TEMPEL_URL_") && /^https:\/\/.+/i.test(url);
+  }
+
+  function updateRefreshStatus(message) {
+    const el = $("auto-refresh-status");
+    if (el) el.textContent = message;
+  }
+
+  function formatUpdateTime(date) {
+    return date.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  }
+
+  async function loadAllData(force = false) {
+    if (!force && state.allRows) return state.cache;
+    if (!sourceConfigured(DATA_SOURCE)) {
+      const missing = { peserta: [], tanggal: "", error: "URL spreadsheet belum diatur." };
+      state.cache = { literasi: missing, numerasi: missing };
+      return state.cache;
+    }
+
+    const response = await fetch(
+      DATA_SOURCE + (DATA_SOURCE.includes("?") ? "&" : "?") + "cacheBust=" + Date.now(),
+      { cache: "no-store" }
+    );
+    if (!response.ok) throw new Error(`Spreadsheet tidak dapat dimuat (${response.status}).`);
+
+    const rows = normalizeRows(parseCsv(await response.text()));
+    const nextCache = {};
+
+    ["literasi", "numerasi"].forEach(exam => {
+      const peserta = rows
+        .filter(person => person.jenisUjian === exam)
+        .map(({ jenisUjian, ...person }) => person);
+      const tanggal = peserta.find(person => person.tanggal)?.tanggal || "";
+      nextCache[exam] = { peserta, tanggal, error: "" };
+    });
+
+    state.allRows = rows;
+    state.cache = nextCache;
+    state.lastUpdated = new Date();
+    updateRefreshStatus("● Data diperbarui " + formatUpdateTime(state.lastUpdated) + " · otomatis 10 detik");
+    return state.cache;
+  }
+
+  async function loadExam(exam, force = false) {
+    await loadAllData(force);
+    return state.cache[exam] || { peserta: [], tanggal: "", error: "Data ujian belum tersedia." };
+  }
+
+  async function autoRefresh() {
+    if (state.refreshing || document.hidden) return;
+    state.refreshing = true;
+    try {
+      const examAtStart = state.exam;
+      await loadAllData(true);
+      if (examAtStart === state.exam) render(state.cache[state.exam]);
+    } catch (error) {
+      updateRefreshStatus("● Gagal memperbarui · mencoba lagi dalam 10 detik");
+      if (!state.cache[state.exam]) {
+        state.cache[state.exam] = { peserta: [], tanggal: "", error: error.message };
+        render(state.cache[state.exam]);
+      }
+    } finally {
+      state.refreshing = false;
+    }
+  }
+
+  function showEmpty(title, message, icon = "✦") {
+    $("results-body").innerHTML = `<tr><td colspan="4"><div class="empty"><div class="empty-illustration">${icon}</div><strong>${escapeHtml(title)}</strong><p>${escapeHtml(message)}</p></div></td></tr>`;
+  }
+
+  function formatNumber(value) {
+    return Number(value).toLocaleString("id-ID", { maximumFractionDigits: 2 });
+  }
+
+  function getSorted(data) {
+    const q = state.search.trim().toLocaleLowerCase("id");
+    const list = data.peserta.filter(p => p.namaLengkap.toLocaleLowerCase("id").includes(q));
+    list.sort((a, b) => {
+      let result = 0;
+      if (state.sortKey === "namaLengkap") {
+        result = a.namaLengkap.localeCompare(b.namaLengkap, "id", { sensitivity: "base" });
+      } else if (state.sortKey === "sisaWaktu") {
+        const av = timeToSeconds(a.sisaWaktu), bv = timeToSeconds(b.sisaWaktu);
+        result = (av ?? Number.POSITIVE_INFINITY) - (bv ?? Number.POSITIVE_INFINITY);
+      } else {
+        result = (a.nilai ?? Number.NEGATIVE_INFINITY) - (b.nilai ?? Number.NEGATIVE_INFINITY);
+      }
+      if (result === 0) result = a.namaLengkap.localeCompare(b.namaLengkap, "id", { sensitivity: "base" });
+      return state.sortDir === "asc" ? result : -result;
+    });
+    return list;
+  }
+
+  function updateSortUI() {
+    const icons = {
+      namaLengkap: $("sort-name-icon"),
+      sisaWaktu: $("sort-time-icon"),
+      nilai: $("sort-score-icon")
+    };
+    Object.entries(icons).forEach(([key, el]) => {
+      el.textContent = state.sortKey === key ? (state.sortDir === "asc" ? "↑" : "↓") : "↕";
+    });
+    $("sort-select").value = `${state.sortKey}-${state.sortDir}`;
+  }
+
+  function render(data) {
+    const exam = state.exam;
+    const title = examNames[exam];
+    $("result-title").textContent = `Rekap hasil ${title}`;
+    $("result-subtitle").textContent = `Daftar hasil ujian ${title} peserta didik`;
+    $("exam-date").textContent = data.tanggal || "Tanggal pelaksanaan belum diatur";
+
+    const scores = data.peserta.map(p => p.nilai).filter(Number.isFinite);
+    $("stat-total").textContent = data.peserta.length.toLocaleString("id-ID");
+    $("stat-high").textContent = scores.length ? formatNumber(Math.max(...scores)) : "—";
+    $("stat-average").textContent = scores.length ? formatNumber(scores.reduce((a,b)=>a+b,0)/scores.length) : "—";
+
+    const list = getSorted(data);
+    if (!list.length) {
+      if (data.error === "URL spreadsheet belum diatur.") {
+        showEmpty("Data sedang disiapkan", "Admin sekolah sedang menyiapkan spreadsheet gabungan hasil ujian. Silakan kunjungi kembali setelah pengumuman dipublikasikan.", "✎");
+      } else if (data.error) {
+        showEmpty("Data belum dapat dimuat", data.error + " Periksa kembali koneksi atau hubungi admin sekolah.", "!");
+      } else if (data.peserta.length && state.search) {
+        showEmpty("Nama tidak ditemukan", "Coba periksa ejaan nama atau gunakan kata kunci yang lebih pendek.", "⌕");
+      } else {
+        showEmpty("Belum ada data peserta", "Data hasil ujian untuk kategori ini belum tersedia.", "✦");
+      }
+    } else {
+      $("results-body").innerHTML = list.map((p, i) => `
+        <tr>
+          <td class="rank">${i + 1}</td>
+          <td class="name">${escapeHtml(p.namaLengkap)}</td>
+          <td class="time">${escapeHtml(p.sisaWaktu || "—")}</td>
+          <td class="score">${p.nilai === null ? "—" : escapeHtml(formatNumber(p.nilai))}</td>
+        </tr>`).join("");
+    }
+    $("result-count").textContent = `Menampilkan ${list.length} dari ${data.peserta.length} peserta`;
+    updateSortUI();
+  }
+
+  async function selectExam(exam, force = false) {
+    const examChanged = state.exam !== exam;
+    state.exam = exam;
+    if (examChanged) { state.sortKey = "nilai"; state.sortDir = "desc"; }
+    state.search = "";
+    $("search").value = "";
+    document.querySelectorAll("[data-exam]").forEach(btn => {
+      const active = btn.dataset.exam === exam;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+    $("hero-literasi").hidden = exam !== "literasi";
+    $("hero-numerasi").hidden = exam !== "numerasi";
+    $("result-symbol").innerHTML = exam === "literasi"
+      ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5c3.5-1.5 7-1 9 1v13c-2-2-5.5-2.5-9-1v-13Zm18 0c-3.5-1.5-7-1-9 1v13c2-2 5.5-2.5 9-1v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2.5" width="14" height="19" rx="2.5" stroke="currentColor" stroke-width="1.7"/><rect x="8" y="5.5" width="8" height="3.5" rx="1" fill="currentColor" opacity=".2"/><path d="M8.5 12h1m5 0h1m-7 3.5h1m5 0h1m-7 3.5h1m5 0h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    $("results-body").innerHTML = '<tr><td colspan="4"><div class="empty"><div class="empty-illustration"><span class="loading-dot"></span></div><strong>Memuat hasil ujian...</strong><p>Sedang mengambil data terbaru dari spreadsheet.</p></div></td></tr>';
+    try {
+      const data = await loadExam(exam, force);
+      render(data);
+    } catch (error) {
+      const data = { peserta: [], tanggal: "", error: error.message };
+      state.cache[exam] = data;
+      render(data);
+    }
+  }
+
+  document.querySelectorAll("[data-exam]").forEach(btn => {
+    btn.addEventListener("click", () => selectExam(btn.dataset.exam));
+  });
+
+  document.querySelectorAll("[data-sort]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.sort;
+      if (state.sortKey === key) state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+      else { state.sortKey = key; state.sortDir = key === "nilai" ? "desc" : "asc"; }
+      render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+    });
+  });
+
+  $("sort-select").addEventListener("change", e => {
+    const [key, dir] = e.target.value.split("-");
+    state.sortKey = key;
+    state.sortDir = dir;
+    render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+  });
+
+  $("search").addEventListener("input", e => {
+    state.search = e.target.value;
+    render(state.cache[state.exam] || { peserta: [], tanggal: "" });
+  });
+
+  $("refresh").addEventListener("click", async () => {
+    const button = $("refresh");
+    button.disabled = true;
+    button.innerHTML = "<span>↻</span> Memuat...";
+    await autoRefresh();
+    button.disabled = false;
+    button.innerHTML = "<span>↻</span> Perbarui";
+  });
+
+  // Ambil ulang satu spreadsheet gabungan setiap 10 detik.
+  window.setInterval(autoRefresh, 10000);
+
+  // Saat tab kembali aktif, segera sinkronkan data agar tidak menunggu interval berikutnya.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) autoRefresh();
+  });
+
+  selectExam("literasi");
+})();
+</script>
+</body>
+</html>
